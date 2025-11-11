@@ -12,27 +12,21 @@ import { createRules, sort_rules } from "../rules/rules";
 import RuleRetypeNoPaste from "../rules/RuleRetypeNoPaste/RuleRetypeNoPaste";
 
 async function get_todays_wordle() {
+    const url = `/api/wordle`;
+    const options = { method: 'GET' };
+
     try {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const url = `https://www.nytimes.com/svc/wordle/v2/${year}-${month}-${day}.json`;
-
-        const response = await fetch(url);
-
+        let response = await fetch(url, options);
         if (!response.ok) {
-            console.error(`Failed to fetch from NYT: ${response.status}`);
-            return null;
+            console.error("Error from /api/wordle:", await response.text());
+            return "ERROR";
         }
-
-        const data = await response.json();
-        console.log("WORDLE (direct): ", data.solution);
-        return data.solution;
-
+        let json = await response.json();
+        console.log("WORDLE: ", json);
+        return json.solution;
     } catch (error) {
-        console.error('Failed to fetch Wordle solution:', error.message);
-        return null;
+        console.error("Failed to fetch wordle:", error);
+        return "ERROR";
     }
 }
 
