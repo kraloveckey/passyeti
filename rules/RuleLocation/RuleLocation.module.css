@@ -1,13 +1,16 @@
-.location_wrapper{
-    display: grid;
-    grid-template-columns: auto 50px;
+.location_center_wrapper {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content:space-between;
-    padding: 6px 6px 6px 12px;
     margin-top: 8px;
-    gap: 5px;
 }
-.location{
+.location_inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.location {
     font-size: 17px;
     font-weight: bold;
 }

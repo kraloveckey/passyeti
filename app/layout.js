@@ -1,15 +1,17 @@
 import "./globals.css"
 
 export const metadata = {
-  title: 'QuirkyLock',
-  description: 'Lock your deepest secrets with the ultimate password',
+  title: 'PassYeti',
+  description: 'Protect your most intimate secrets with a strong password :D',
 }
  
 export default function RootLayout({ children }) {
  return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      {
+      }
       <head>
-        <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet'/>
+        <link href='https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap' rel='stylesheet'/>
       </head>
       <body>{children}</body>
     </html>

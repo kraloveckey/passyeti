@@ -3,23 +3,26 @@ import Rule from "../Rule";
 const morse = {
     a: ".-", b: "-...", c: "-.-.", d: "-..", e: ".", f: "..-.", g: "--.", h: "....", 
     i: "..", j: ".---", k: "-.-", l: ".-..", m: "--", n: "-.", o: "---", p: ".--.", 
-    q: "--.-", r: ".-.", s: "...", t: "-", u: "..-", v: "...-", w: ".--", x: "-..-", y: "-.--", z: "--.." 
+    q: "--.-", r: ".-.", s: "...", t: "-", u: "..-", v: "...-", w: ".--", x: "-..-", y: "-.--", z: "--.."
 }
 
-export default class RuleMorse extends Rule{
-    constructor(){
-        super("Your password must contain the Morse code of the first 3 english alphabets in your password. (Use . and -)");
+export default class RuleMorse extends Rule {
+    constructor() {
+        super("Your password must contain the Morse code of the first 3 english alphabets in your password (use . and -).");
     }
 
-    check(txt){
+    check(txt) {
         let letters = txt.match(/[A-Za-z]/g)?.slice(0, 3);
         if(letters?.length===3)
         {
-            let code = `${morse[letters[0].toLowerCase()]} ${morse[letters[1].toLowerCase()]} ${morse[letters[2].toLowerCase()]}`;
+            const esc = (s) => s.replaceAll(".", "\\.");
+
+            let code1 = esc(morse[letters[0].toLowerCase()]);
+            let code2 = esc(morse[letters[1].toLowerCase()]);
+            let code3 = esc(morse[letters[2].toLowerCase()]);
             
-            let exp = `${code}`;
-            exp = exp.replaceAll(".", "\\.");
-            console.log("morse:", exp);
+            let exp = `${code1}\\s+${code2}\\s+${code3}`;
+            
             let r = new RegExp(exp);
             return r.test(txt);
         }

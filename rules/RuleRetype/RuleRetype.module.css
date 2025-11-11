@@ -1,0 +1,48 @@
+k.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 10px;
+}
+.textarea {
+    width: 100%;
+    min-height: 100px;
+    font-size: 16px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    resize: none;
+    transition: all 0.2s ease;
+}
+.correct {
+    border-color: #3cb371 !important;
+    background-color: #e9ffe9 !important;
+}
+.bottomArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+}
+.timer {
+    font-weight: bold;
+    color: #555;
+}
+.success {
+    font-weight: bold;
+    color: #3cb371;
+}
+.reloadBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.timeUp {
+    color: red;
+    font-weight: bold;
+}

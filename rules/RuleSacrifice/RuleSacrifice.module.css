@@ -1,0 +1,31 @@
+.sacrificeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+    justify-content: center;
+}
+.letterButton {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+.letterButton:hover {
+    background: #eee;
+}
+.letterButton.sacrificed {
+    background: #b00020;
+    color: white;
+    border-color: #b00020;
+    text-decoration: line-through;
+}
+.letterButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

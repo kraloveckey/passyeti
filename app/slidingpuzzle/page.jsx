@@ -26,8 +26,8 @@ function PuzzlePage() {
                     New Puzzle
                 </button>
                 <button onClick={()=>setShowSolution(true)}>Give up!</button>
-            </div>                
-            <div hidden={!showSolution}>Solution: {word}</div> 
+            </div>
+            <div hidden={!showSolution}>Solution: {word}</div>
             </>
         )}
     </div>

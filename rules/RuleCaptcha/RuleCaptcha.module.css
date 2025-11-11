@@ -1,0 +1,24 @@
+.captcha_center_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+.captcha_inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.captcha_canvas_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.captcha_canvas {
+    border: 1px solid #999;
+    border-radius: 6px;
+    background-color: #eee;
+    width: 200px;
+    height: 50px;
+}

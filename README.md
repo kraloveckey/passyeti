@@ -1,29 +1,36 @@
-# QuirkyLock Game
+# PassYeti Game
 
-Welcome to [QuirkyLock](https://quirkylock.netlify.app)! Get ready to create the most complicated password of your life. You must craft a password that adheres to a series of increasingly absurd rules. Enjoy a variety of mini-games that incorporate puzzles, and riddles to enhance the gameplay experience.
+> ReactJS game that challenges your password, your patience, your sanity, and your will to live ⛔️
 
-[Play QuirkyLock Now](https://quirkylock.netlify.app)
+🔐 Welcome to [`PassYeti`](https://passyeti.netlify.app).  It's a play on the classic problem of generating a secure password by coupling it with a frustrating mix of increasingly difficult rules. 
 
-![quirkylock_ss](https://github.com/sayantanDs/quirkylock/assets/39154403/016dd33a-ca59-4bc7-a4d1-51bfade4d7ea)
+👾 Get ready to create the most complicated password of your life. You must craft a password that adheres to a series of increasingly absurd rules. Enjoy a variety of mini-games that incorporate puzzles and riddles to enhance the gameplay experience. The game ends when you've satisfied all the rules.
 
-The idea for this game comes from [The Password Game](https://neal.fun/password-game/) made by [Neal](https://twitter.com/nealagarwal). Go check out the original if you haven't played it yet.
+[Play PassYeti now ▶️](https://passyeti.netlify.app)
+
+![passyeti](.assets/passyeti.png)
+
+> The idea for this game comes from [`The Password Game`](https://neal.fun/password-game/) made by Neal and [`QuirkyLock`](https://github.com/sayantanDs/quirkylock) project. Go check out the originals, if you haven't played it yet.
 
 ## Development
+
 ### Getting Started
 
-1. Clone this repository to your local machine using `git clone https://github.com/sayantanDs/quirkylock.git`.
-2. Navigate to the project directory using the command line: `cd quirkylock`.
+1. Clone this repository to your local machine using `git clone https://github.com/kraloveckey/passyeti.git`.
+2. Navigate to the project directory using the command line: `cd passyeti`.
 3. Install the required dependencies by running `npm install`.
 4. Start the development server with `npm run dev`.
 5. Open your web browser and go to `http://localhost:3000` to play the game.
 
-
-### Contributing
-
-Contributions are welcome! If you find a bug or have suggestions for improvements, please open an issue or create a pull request.
-
+> If you find a bug or have suggestions for improvements, please open an issue or create a pull request.
 
 ## Acknowledgements
-- This game is heavily inspired by [The Password Game](https://neal.fun/password-game/) made by [Neal](https://twitter.com/nealagarwal)
+
+- This game is heavily inspired by [`The Password Game`](https://neal.fun/password-game/) by Neal and the [`QuirkyLock`](https://github.com/sayantanDs/quirkylock) project.
 - This game was developed using the [Next.js](https://nextjs.org/) framework.
-- [Reload icon by mavadee](https://www.freepik.com/icon/reload_3580291#fromView=keyword&term=Refresh&page=1&position=15)
+
+---
+
+<a href="https://www.paypal.com/donate/?hosted_button_id=GWWLEXEF3XL92">
+  <img src="https://raw.githubusercontent.com/kraloveckey/kraloveckey/refs/heads/main/.assets/paypal-donate-button.png" alt="Donate with PayPal" width="225" height="100"/>
+</a>

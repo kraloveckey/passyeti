@@ -1,44 +1,47 @@
 .rulebox {
-    border-radius: 0px;
+    border-radius: 8px;
     text-align: left;
-    font-size: 16px;
-    margin: 22px auto;
+    margin: 16px auto;
     overflow: hidden;
-
-    /* background-color: #ffdce0; */
-    background-color: #ffeced;
-    border: 2px solid #CE273D;
-    box-shadow: 8px 8px 1px 0px rgba(222, 184, 189, 0.4);
-
-    transition: background-color 0.5s;
+    font-size: 17px;
+    background-color: #ffecec;
+    border: 1px solid #ff0000;
+    box-shadow: 2px 2px 5px 2px rgba(255, 0, 0, .12);
+    transition: all 0.3s ease;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .rulebox:hover {
-    box-shadow: 10px 10px 1px 0px rgba(222, 184, 189, 0.5);
+    transform: translateY(-2px);
 }
 .rulebox-top {
     padding: 5px 16px 8px 8px;
-
-    background-color: #fabac4;
+    background-color: #ffc7c7;
     color: #a11a2c;
     font-weight: bold;
-    font-size: 15px;
-
+    font-size: 16px;
     transition: background-color 0.5s;
 }
-
 .rulebox-desc {
     padding: 11px 17px 15px 11px;
 }
-
 .rulebox.rule-correct {
-    background-color: #deffce;
-    border: 2px solid #52A22A;
-    box-shadow: 8px 8px 1px 0px rgba(167, 187, 157, 0.4);
-}
-.rulebox.rule-correct:hover {
-    box-shadow: 10px 10px 1px 0px rgba(167, 187, 157, 0.5);
+    background-color: #e3ffe3;
+    border: 1px solid #267b30;
+    box-shadow: 3px 3px 5px 2px rgba(60, 155, 71, .2);
 }
 .rulebox-top.rule-correct {
-    background-color: #b4ea99;
+    background-color: #aef3ae;
     color: #32621a;
+}
+.rule-icon {
+    height: 19px;
+    left: -1px;
+    pointer-events: none;
+    position: relative;
+    top: 3px;
+    width: 19px;
+    display: inline-block;
+    margin-right: 5px;
 }

@@ -1,9 +1,17 @@
-.riddle_wrapper{
-    display: grid;
-    grid-template-columns: auto 50px;
+.riddle_center_wrapper {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content:space-between;
-    padding: 8px 8px 8px 15px;
     margin-top: 8px;
-    gap: 5px;
+}
+.riddle_inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.riddle {
+    font-weight: bold;
+    font-size: 1.05em;
+    text-align: center;
 }

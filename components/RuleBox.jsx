@@ -1,22 +1,24 @@
 import React from 'react';
 import "./RuleBox.css";
+import Image from 'next/image';
 
-function RuleBox({heading, msg, correct, renderItem, propsToChild}) {
-    
-    // Using renderItem prop to render child component so that we can pass props to them
-    // the props coming from parent, that are to be passed to the child component are in 'propsToChild'
-    // this pattern is discussed in: https://react.dev/reference/react/cloneElement#alternatives
-
+function RuleBox({heading, msg, correct, renderItem, propsToChild, className}) {
     return ( 
-        <div className={`rulebox ${correct? "rule-correct": "rule-err" }`}>
+    <div className={`rulebox ${correct? "rule-correct": "rule-err" } ${className || ''}`}>
             <div className={`rulebox-top ${correct? "rule-correct": "rule-err" }`}>
-                {correct?"\u{2705}":"\u{274C}"} {heading}
+                {correct ? (
+                    <Image src="/chekmark.svg" width={19} height={19} alt="Check" className="rule-icon" />
+                ) : (
+                    <Image src="/error.svg" width={19} height={19} alt="Error" className="rule-icon" />
+                )}
+                {heading}
+
             </div>
             <div className="rulebox-desc">
                 {msg}
                 {renderItem===undefined? null: renderItem(propsToChild)}
             </div>
-        </div> 
+        </div>
     );
 }
 

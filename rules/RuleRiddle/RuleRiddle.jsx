@@ -1,8 +1,7 @@
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Rule from "../Rule";
 import styles from "./RuleRiddle.module.css";
 import ReloadButton from '../../components/ReloadButton';
-
 
 const riddles = [
     ["It's shorter than all the rest, when you're happy you raise it like it's the best.", "thumb"],
@@ -11,7 +10,7 @@ const riddles = [
     ["I can be all colours or no colour at all, sometimes I'm empty, and others I'm full.", "glass"],
     ["You use me from your head to toe, the more I work, the smaller I grow.", "soap"],
     ["I'm found on people's faces, I'm something you wear, I help correct your eyesight and I come in a pair", "spectacles"],
-    [" In the heat, you see me wrong. I bring you hope but am soon gone.", "mirrage"],
+    ["In the heat, you see me wrong. I bring you hope but am soon gone.", "mirrage"],
     ["Stare at me, and you may go blind. Yet, you cannot see if I don't shine.", "sun"],
     ["I am sometimes round, but not so often. I'm here every night, so I'm easily forgotten.", "moon"],
     ["I'm taken from a mine, and shut up in a wooden case, from which I'm never released, and yet I am used by almost every person. What am I?", "Pencil"],
@@ -35,49 +34,53 @@ const riddles = [
     ["People make me, save me, change me, raise me. What am I?", "money"]
 ]
 
-
-export default class RuleRiddle extends Rule{
-    constructor(){
+export default class RuleRiddle extends Rule {
+    constructor() {
         super("Your password must contain the solution to the following riddle:");
-
         this.riddleNum = Math.floor(Math.random()*riddles.length);
         console.log("Riddle:", riddles[this.riddleNum][1]);
-        this.renderItem = ({regenerateRule, correct}) => <Riddle riddleNum={this.riddleNum} regenerate={()=>regenerateRule(this.num)} correct={correct}/>
-        // this.num is the rule number that is dynamically set later
-        
+        this.createRenderItem();
     }
 
-    regenerate(){
+    createRenderItem() {
+        this.renderItem = ({regenerateRule, correct, num}) => <Riddle riddleNum={this.riddleNum} regenerate={()=>regenerateRule(num)} correct={correct}/>;
+    }
+
+    regenerate() {
         this.riddleNum = Math.floor(Math.random()*riddles.length);
         console.log("Riddle:", riddles[this.riddleNum][1]);
+        this.createRenderItem();
     }
 
-    check = (txt) => {
+    check(txt) {
         let ans = riddles[this.riddleNum][1];
-        let r = RegExp(`(?:${ans})`, "i");
+        let r = new RegExp(`(?:${ans})`, "i");
         return r.test(txt);
     }
 }
 
-function Riddle({riddleNum, regenerate, correct}){
+function Riddle({riddleNum, regenerate, correct}) {
     const riddle = riddles[riddleNum][0];
-    const reloadsLeft = useRef(3);
+    const [reloadsLeft, setReloadsLeft] = useState(3);
 
     return (
-        <div className={styles.riddle_wrapper}>
-            <div className={styles.riddle}>
-                {riddle}
+        <div className={styles.riddle_center_wrapper}>
+            <div className={styles.riddle_inline}>
+                <div className={styles.riddle}>
+                    {riddle}
+                </div>
+                <ReloadButton 
+                    onClick={()=>{
+                        if(reloadsLeft > 0) {
+                            regenerate()
+                setReloadsLeft(reloadsLeft - 1);
+                        }
+                    }} 
+                    hidden={correct}
+                    reloadsLeft={reloadsLeft}
+            showLastReload={true}
+                />
             </div>
-            <ReloadButton 
-                onClick={()=>{
-                    if(reloadsLeft.current>0){
-                        regenerate()
-                        reloadsLeft.current--; 
-                    }
-                }} 
-                hidden={correct} 
-                reloadsLeft={reloadsLeft.current}
-            />
         </div>
     )
 }

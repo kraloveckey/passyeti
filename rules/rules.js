@@ -8,16 +8,50 @@ import RuleTimeEmoji from "./RuleTimeEmoji/RuleTimeEmoji";
 import RuleQR from "./RuleQR/RuleQR";
 import RuleSum from "./RuleSum/RuleSum";
 import RuleEarthquake from "./RuleEarthquake/RuleEarthquake";
+import RuleColorFlash from "./RuleColorFlash/RuleColorFlash";
+import RuleDayOfWeek from "./RuleDayOfWeek/RuleDayOfWeek";
+import RuleMoonPhase from "./RuleMoonPhase/RuleMoonPhase";
+import RulePetEgg from "./RulePetEgg/RulePetEgg";
+import RuleFire from "./RuleFire/RuleFire";
+import RuleCaptcha from "./RuleCaptcha/RuleCaptcha";
+import RuleHatchedYeti from "./RuleHatchedYeti/RuleHatchedYeti";
+import RuleMonth from "./RuleMonth/RuleMonth";
+import RuleHexColor from "./RuleHexColor/RuleHexColor";
+import RuleSacrifice from "./RuleSacrifice/RuleSacrifice";
+import RuleCurrentTime from "./RuleCurrentTime/RuleCurrentTime";
+import RuleRetype from "./RuleRetype/RuleRetype";
+import RuleRetypeNoPaste from "./RuleRetypeNoPaste/RuleRetypeNoPaste";
 
-
-var rules = [
-    new Rule( 
-        "Your password must be at least 6 characters.",
-        (t) => t?.length >= 6
+function createRules(wordleSolution) {
+    return [
+    new Rule(
+        "Your password must include a roman numeral.",
+        (t) => /[IVXLCDM]/i.test(t)
     ),
-    new Rule( 
+    new Rule(
         "Your password must include an uppercase and a lowercase letter.",
         (t) => (/[A-Z]/.test(t) && /[a-z]/.test(t))
+    ),
+    new Rule(
+        "Your password must include a two-letter symbol from the periodic table.",
+        (t) => /(He|Li|Be|Ne|Na|Mg|Al|Si|Cl|Ar|Ca|Sc|Ti|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og)/.test(t)
+    ),
+    new Rule(
+        "Your password must include 2-digit prime number.",
+        (t) => /(?:11)|(?:13)|(?:17)|(?:19)|(?:23)|(?:29)|(?:31)|(?:37)|(?:41)|(?:43)|(?:47)|(?:53)|(?:59)|(?:61)|(?:67)|(?:71)|(?:73)|(?:79)|(?:83)|(?:89)|(?:97)/.test(t)
+    ),
+    new RuleCurrentTime(),
+    new Rule( 
+        "Your password must be at least 12 characters.",
+        (t) => t?.length >= 12
+    ),
+    new Rule(
+        "Your password must contain all the english vowels.",
+        (t) => /a/i.test(t) && /e/i.test(t) && /i/i.test(t) && /o/i.test(t) && /u/i.test(t)
+    ),
+    new Rule(
+        "Your password must include a leap year.",
+        (t) => /(1[6-9]|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)/.test(t)
     ),
     new Rule( 
         "Your password must include a special character.",
@@ -27,18 +61,17 @@ var rules = [
         "Your password must include a negative number.",
         (t) => /-\d/.test(t)
     ),
-    new Rule( 
-        "Your password must contain all the english vowels.",
-        (t) => /a/i.test(t) && /e/i.test(t) && /i/i.test(t) && /o/i.test(t) && /u/i.test(t)
+    new RuleRetypeNoPaste(),
+    new RuleSum(),
+    new RuleMonth(),
+    new RuleSacrifice(),
+    new Rule(
+        "Your password is not strong enough. It must include at least three strong \u{1F4AA} emojis.",
+        (t) => (t.match(/\u{1F4AA}/gu) || []).length >= 3
     ),
     new Rule(
-        "Your password must include 2-digit prime number.",
-        (t) => /(?:11)|(?:13)|(?:17)|(?:19)|(?:23)|(?:29)|(?:31)|(?:37)|(?:41)|(?:43)|(?:47)|(?:53)|(?:59)|(?:61)|(?:67)|(?:71)|(?:73)|(?:79)|(?:83)|(?:89)|(?:97)/.test(t)
-    ),
-    new RuleSum(),
-    new Rule( 
-        "Your password must include the name of \"The power house of the cell\". \u{1F9A0}", //&#x1F9A0;
-        (t) => /(?:mitochondria)|(?:mitochondrion)/i.test(t)
+        "Your password must include the microscopic life forms that reside within all living cells and communicate with the Force \u{2B50}",
+        (t) => /(midichlorians|midi-chlorians)/i.test(t)
     ),
     new Rule( 
         "Your password must include the name of a continent.",
@@ -48,19 +81,38 @@ var rules = [
         "Your password must contain the value of pi up to first 5 decimal places.",
         (t) => /(?:3\.14159)/.test(t)
     ),    
-    
     new RuleTimeEmoji(),
-    new RuleWordle(),
+    new Rule(
+        'Your password must contain one of the following affirmations: "i am a genius", "Yeti is my friend", or "this game is easy".',
+        (t) => /(i am a genius|Yeti is my friend|this game is easy)/i.test(t)
+    ),
+    new Rule(
+        "Your password must include a valid YouTube video URL.",
+        (t) => /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/.test(t)
+    ),
+    new RuleWordle(wordleSolution),
     new RuleEarthquake(),
     new RuleQR(),
+    new RuleMoonPhase(),
     new RuleMorse(),
+    new RulePetEgg(),
     new RuleLocation(),
+    new RuleFire(),
+    new RuleColorFlash(),
+    new RuleHatchedYeti(),
+    new RuleDayOfWeek(),
+    new RuleHexColor(),
     new RuleRiddle(),
     new Rule(
         "Your password must have as many vowels as consonants.",
         (t) => (t.match(/[aeiou]/ig) || []).length === (t.match(/[bcdfghjklmnpqrstvwxys]/ig) || []).length
     ),
     new RuleSlidingPuzzle(),
+    new RuleCaptcha(),
+    new Rule(
+        "Your password must include a chess piece symbol.",
+        (t) => /[♔♕♖♗♘♙♚♛♜♝♞♟]/.test(t)
+    ),
     new Rule(
         "Your password must include the length of your password.",
         (t) => {
@@ -68,14 +120,16 @@ var rules = [
             let r = new RegExp(`${l}`);
             return r.test(t);
         }
-    )
-];
+    ),
+    new RuleRetype()
+    ];
+}
 
-function sort_rules(a, b){
-    if(a.correct == b.correct){
+function sort_rules(a, b) {
+    if(a.correct == b.correct) {
         return b.num - a.num;
     }
-    else if(!a.correct && b.correct){
+    else if(!a.correct && b.correct) {
         return -1;
     }
     else{
@@ -83,5 +137,4 @@ function sort_rules(a, b){
     }
 }
 
-export default rules;
-export {sort_rules};
+export { createRules, sort_rules };

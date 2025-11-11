@@ -1,17 +1,17 @@
 import Rule from "../Rule";
 
-function getCurrentNearestHalfHour(){
+function getCurrentNearestHalfHour() {
     let d = new Date();
     let h = d.getHours()%12;
     let m = d.getMinutes();
-    if(m>=45){
+    if(m>=45) {
         m=0;
         h = (h+1)%12;
     }
-    else if(m>=15){
+    else if(m>=15) {
         m=30
     }
-    else{
+    else {
         m=0;
     }
 
@@ -56,8 +56,7 @@ const hourToEmoji = {
     "11:30": "\u{1F566}",
 }
 
-
-export default class RuleTimeEmoji extends Rule{
+export default class RuleTimeEmoji extends Rule {
     constructor(){
         super("Your password must contain the current time as emoji (nearest half hour).");
         this.nearestHalfHour = getCurrentNearestHalfHour();
