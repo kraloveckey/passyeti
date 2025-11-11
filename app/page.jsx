@@ -12,21 +12,44 @@ import { createRules, sort_rules } from "../rules/rules";
 import RuleRetypeNoPaste from "../rules/RuleRetypeNoPaste/RuleRetypeNoPaste";
 
 async function get_todays_wordle() {
-    const url = `/api/wordle`;
-    const options = { method: 'GET' };
-
     try {
-        let response = await fetch(url, options);
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const url = `https://www.nytimes.com/svc/wordle/v2/${year}-${month}-${day}.json`;
+
+        const response = await fetch(url);
+
         if (!response.ok) {
-            console.error("Error from /api/wordle:", await response.text());
-            return "ERROR";
+            console.error(`Failed to fetch from NYT: ${response.status}`);
+            return null;
         }
-        let json = await response.json();
-        console.log("WORDLE: ", json);
-        return json.solution;
+
+        const data = await response.json();
+        console.log("WORDLE (direct): ", data.solution);
+        return data.solution;
+
     } catch (error) {
-        console.error("Failed to fetch wordle:", error);
-        return "ERROR";
+        console.error('Failed to fetch Wordle solution:', error.message);
+        return null;
+    }
+}
+
+async function get_moon_phase() {
+    try {
+        const response = await fetch(`https://wttr.in/Moon?format=%m&t=${new Date().getTime()}`, {
+            headers: {
+            }
+        });
+        if (!response.ok) return null;
+
+        const emoji = await response.text();
+        console.log("Moon Phase:", emoji);
+        return emoji;
+    } catch (error) {
+        console.error("Failed to fetch moon phase:", error);
+        return null;
     }
 }
 
@@ -43,8 +66,11 @@ export default function Home() {
 
     useEffect(() => {
         async function loadGameData() {
-            const wordleSolution = await get_todays_wordle();
-            const ruleList = createRules(wordleSolution);
+            const [wordleSolution, moonPhaseEmoji] = await Promise.all([
+                get_todays_wordle(),
+                get_moon_phase()
+            ]);
+            const ruleList = createRules(wordleSolution, moonPhaseEmoji);
             const initialRules = ruleList.map((rule, i) => {
                 const newRule = Object.create(Object.getPrototypeOf(rule));
                 Object.assign(newRule, rule);
@@ -54,7 +80,6 @@ export default function Home() {
                 return newRule;
             });
             max_unlocked_rules.current = 0;
-            
             setRuleState(initialRules);
             setLoading(false);
     }
