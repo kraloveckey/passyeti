@@ -6,9 +6,14 @@
 
 👾 Get ready to create the most complicated password of your life. You must craft a password that adheres to a series of increasingly absurd rules. Enjoy a variety of mini-games that incorporate puzzles and riddles to enhance the gameplay experience. The game ends when you've satisfied all the rules.
 
-[Play PassYeti now ▶️](https://passyeti.netlify.app)
-
-![passyeti](.assets/passyeti.png)
+<div align="center">
+  <a href="https://passyeti.netlify.app">
+    <strong>Play PassYeti now ▶️</strong>
+  </a>
+  <br>
+  <img src=".assets/passyeti.png" alt="passyeti" width="300"/>
+  <br> <br>
+</div>
 
 > The idea for this game comes from [`The Password Game`](https://neal.fun/password-game/) made by Neal and [`QuirkyLock`](https://github.com/sayantanDs/quirkylock) project. Go check out the originals, if you haven't played it yet.
 
