@@ -33,9 +33,3 @@
 
 - This game is heavily inspired by [`The Password Game`](https://neal.fun/password-game/) by Neal and the [`QuirkyLock`](https://github.com/sayantanDs/quirkylock) project.
 - This game was developed using the [Next.js](https://nextjs.org/) framework.
-
----
-
-<a href="https://www.paypal.com/donate/?hosted_button_id=GWWLEXEF3XL92">
-  <img src="https://raw.githubusercontent.com/kraloveckey/kraloveckey/refs/heads/main/.assets/paypal-donate-button.png" alt="Donate with PayPal" width="225" height="100"/>
-</a>
